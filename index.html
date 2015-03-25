@@ -20,14 +20,14 @@
             <span class="logo-flourish flourish-right"></span> 
         </div>
         <nav class="main-nav">
-            <ul>
-                <li class="header-item"><a>PLEASE LOOK UP</a></li>
+            <ul ng-if="navVisible">
+                <li class="header-item" ng-click="loadPhotos('PLEASE LOOK UP')"><a>PLEASE LOOK UP</a></li>
                 <li class="header-item"><a>CUL-DE-SAC</a></li>
                 <li class="header-item"><a>VID&Eacute;O</a></li>
-                <li class="header-item"><a>MR. SUMATRA</a></li>
+                <li class="header-item" ng-click="loadPhotos('TEST')"><a>MR. SUMATRA</a></li>
                 <li class="header-item"><a>ESSAIS (PHOTO)GRAPHIQUES</a></li>
             </ul>
-            <button type="button" class="nav-toggle" onclick="document.querySelector('.main-nav').classList.toggle('toggled');">
+            <button type="button" class="nav-toggle" onclick="document.querySelector('.main-nav').classList.toggle('toggled');" ng-click="toggleNav()">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
