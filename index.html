@@ -1,0 +1,54 @@
+<!doctype HTML>
+<html ng-app="girphoto">
+	<head>
+    <title>GIR | rework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/flourish.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controllers/main-controller.js"></script>
+	</head>
+    <body ng-controller="mainController">
+    <header class="header">
+        <div class="header-item logo">
+            <span class="logo-flourish flourish-left"></span>    
+            <div class="logo-img">
+                <img class="logo-img" alt="logo Virgil Roger Photographie" src="img/logo.png"/>
+            </div>
+            <span class="logo-flourish flourish-right"></span> 
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li class="header-item"><a>PLEASE LOOK UP</a></li>
+                <li class="header-item"><a>CUL-DE-SAC</a></li>
+                <li class="header-item"><a>VID&Eacute;O</a></li>
+                <li class="header-item"><a>MR. SUMATRA</a></li>
+                <li class="header-item"><a>ESSAIS (PHOTO)GRAPHIQUES</a></li>
+            </ul>
+            <button type="button" class="nav-toggle" onclick="document.querySelector('.main-nav').classList.toggle('toggled');">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </nav>
+    </header>
+    <section class="content parallax">
+        <section class="content-text lipsum parallax__layer parallax__layer--back">
+           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non dolere, inquam, istud quam vim habeat postea videro; Atqui, inquam, Cato, si istud optinueris, traducas me ad te totum licebit. Quo modo autem philosophus loquitur? Sed vobis voluptatum perceptarum recordatio vitam beatam facit, et quidem corpore perceptarum. Duo Reges: constructio interrete. Sed quid sentiat, non videtis. Nunc haec primum fortasse audientis servire debemus. Cum salvum esse flentes sui respondissent, rogavit essentne fusi hostes. Sin kakan malitiam dixisses, ad aliud nos unum certum vitium consuetudo Latina traduceret. Aliter enim explicari, quod quaeritur, non potest. Et si turpitudinem fugimus in statu et motu corporis, quid est cur pulchritudinem non sequamur? <a href='http://loripsum.net/' target='_blank'>Non est ista, inquam, Piso, magna dissensio.</a> </p>
+
+<p>Age, inquies, ista parva sunt. <a href='http://loripsum.net/' target='_blank'>Rationis enim perfectio est virtus;</a> Qui autem esse poteris, nisi te amor ipse ceperit? Ne amores quidem sanctos a sapiente alienos esse arbitrantur. Quae similitudo in genere etiam humano apparet. </p>
+
+        </section>
+        <section class="content-images parallax__layer parallax__layer--base">
+            <div class="img-wrapper" ng-repeat="photo in photos">
+                <img src="{{photo.featured_image.source}}" class="content-img" alt="{{photo.featured_image.title}}" ng-cloak/>
+                <div class="img-description" ng-bind-html="photo.content">
+                </div>
+                <br/>
+            </div>
+        </section>
+    </section>
+  </body>
+</html>
