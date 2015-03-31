@@ -1,0 +1,10 @@
+<nav class="main-nav">
+    <ul ng-if="navVisible">
+        <li ng-repeat="item in menuItems" class="header-item" ng-click="menuItemAction(toState)"><a>{{item.label}}</a></li>
+    </ul>
+    <button type="button" class="nav-toggle" onclick="document.querySelector('.main-nav').classList.toggle('toggled');" ng-click="toggleNav()">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+</nav>

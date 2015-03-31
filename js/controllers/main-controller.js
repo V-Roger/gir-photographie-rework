@@ -5,12 +5,12 @@ angular.module('girphoto')
 
 		$scope.loadPhotos = function(cat_id) {
 			$http.get(endPoint+'posts?filter[category_name]='+cat_id+'&filter[order]=ASC').then(function(response) {
-				$scope.photos = response.data;
-				console.log($scope.photos);
+				$scope.data = response.data;
+				console.log($scope.data);
 			});
 		};
 
-		$scope.loadPhotos();
+		$scope.loadPhotos('EYES LIKE CRIPPLED');
 
 		$scope.navVisible = false;
 
@@ -18,4 +18,13 @@ angular.module('girphoto')
 			$scope.navVisible = !$scope.navVisible;
 		};
 
+		$scope.toTrustedHtml = function(html) {
+
+		}
+
+	}])
+	.filter('toTrustedHtml', ['$sce', function($sce) {
+		return function(item) {
+			return $sce.trustAsHtml(item);
+		}
 	}]);
