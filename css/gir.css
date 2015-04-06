@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'flourish';
-  src: url('../fonts/flourish.eot?92967524');
-  src: url('../fonts/flourish.eot?92967524#iefix') format('embedded-opentype'),
-       url('../fonts/flourish.woff?92967524') format('woff'),
-       url('../fonts/flourish.ttf?92967524') format('truetype'),
-       url('../fonts/flourish.svg?92967524#flourish') format('svg');
+  font-family: 'gir';
+  src: url('../fonts/gir.eot?81869003');
+  src: url('../fonts/gir.eot?81869003#iefix') format('embedded-opentype'),
+       url('../fonts/gir.woff?81869003') format('woff'),
+       url('../fonts/gir.ttf?81869003') format('truetype'),
+       url('../fonts/gir.svg?81869003#gir') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -13,14 +13,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'flourish';
-    src: url('../font/flourish.svg?92967524#flourish') format('svg');
+    font-family: 'gir';
+    src: url('../font/gir.svg?81869003#gir') format('svg');
   }
 }
 */
  
  [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "flourish";
+  font-family: "gir";
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -50,7 +50,6 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-left-open:before { content: '\e800'; } /* '' */
-.icon-right-open:before { content: '\e801'; } /* '' */
+.icon-angle-double-up:before { content: '\e800'; } /* '' */
+.icon-angle-right:before { content: '\e801'; } /* '' */
 .icon-angle-left:before { content: '\e802'; } /* '' */
-.icon-angle-right:before { content: '\e803'; } /* '' */

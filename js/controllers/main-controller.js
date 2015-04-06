@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('girphoto')
-	.controller('mainController', ['$scope', '$http', 'endPoint', function($scope, $http, endPoint) {
+	.controller('mainController', ['$scope', '$http', 'restService', function($scope, $http, restService) {
 
-		$scope.loadPhotos = function(cat_id) {
-			$http.get(endPoint+'posts?filter[category_name]='+cat_id+'&filter[order]=ASC').then(function(response) {
-				$scope.data = response.data;
-				console.log($scope.data);
+		$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+			$scope.loading = true;
+			restService.fetch(toState.data.filter, toState.data.filterParam).then(function(data) {
+				$scope.text = data.text;
+				$scope.data = data.images;
+				$scope.loading = false;
 			});
-		};
-
-		$scope.loadPhotos('EYES LIKE CRIPPLED');
+		});
 
 		$scope.navVisible = false;
 
@@ -18,13 +18,9 @@ angular.module('girphoto')
 			$scope.navVisible = !$scope.navVisible;
 		};
 
-		$scope.toTrustedHtml = function(html) {
-
-		}
-
 	}])
 	.filter('toTrustedHtml', ['$sce', function($sce) {
 		return function(item) {
 			return $sce.trustAsHtml(item);
-		}
+		};
 	}]);

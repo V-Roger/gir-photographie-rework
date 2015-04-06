@@ -1,13 +1,28 @@
 'use strict';
 
 angular.module('girphoto')
-	.directive('menu', ['menuService', function(menuService) {
+	.directive('menu', ['$rootScope', 'menuService', 'restService', '$state', function($rootScope, menuService, restService, $state) {
 		return {
 			restrict: 'E',
 			templateUrl: 'js/partials/menu-directive.html',
-			controller: function($scope) {
-				$scope.menuItems = menuService.getMenuItems().home.children.wandering.children;
-				console.log($scope.menuItems);
+			link: function($scope) {
+				$scope.menuItems = menuService.getMenuItems();
+
+				$scope.navClickAction = function(navItem) {					
+					if(navItem.children) {
+						$scope.lastItems = $scope.menuItems;
+					}
+					$scope.lastState = $state.current.name;
+					console.log($scope.lastState);
+					$scope.menuItems = menuService.getMenuItems(navItem);
+				};
+
+				$scope.navBack = function() {
+					$scope.menuItems = $scope.lastItems;
+					if($scope.menuItems.home) {
+						$scope.lastItems = null;
+					}
+				};
 			}
 		};
 	}]);

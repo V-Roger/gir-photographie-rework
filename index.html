@@ -4,13 +4,16 @@
     <title>GIR | rework</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/flourish.css">
+    <link rel="stylesheet" href="css/gir.css">
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/controllers/main-controller.js"></script>
     <script src="js/directives/menu-directive.js"></script>
     <script src="js/services/menu-service.js"></script>
+    <script src="js/services/rest-service.js"></script>
 	</head>
     <body ng-controller="mainController">
     <header class="header">
@@ -24,13 +27,13 @@
         <menu></menu>
     </header>
     <section class="content parallax">
-        <section class="content-text lipsum parallax__layer parallax__layer--back">
-           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non dolere, inquam, istud quam vim habeat postea videro; Atqui, inquam, Cato, si istud optinueris, traducas me ad te totum licebit. Quo modo autem philosophus loquitur? Sed vobis voluptatum perceptarum recordatio vitam beatam facit, et quidem corpore perceptarum. Duo Reges: constructio interrete. Sed quid sentiat, non videtis. Nunc haec primum fortasse audientis servire debemus. Cum salvum esse flentes sui respondissent, rogavit essentne fusi hostes. Sin kakan malitiam dixisses, ad aliud nos unum certum vitium consuetudo Latina traduceret. Aliter enim explicari, quod quaeritur, non potest. Et si turpitudinem fugimus in statu et motu corporis, quid est cur pulchritudinem non sequamur? <a href='http://loripsum.net/' target='_blank'>Non est ista, inquam, Piso, magna dissensio.</a> </p>
-
-<p>Age, inquies, ista parva sunt. <a href='http://loripsum.net/' target='_blank'>Rationis enim perfectio est virtus;</a> Qui autem esse poteris, nisi te amor ipse ceperit? Ne amores quidem sanctos a sapiente alienos esse arbitrantur. Quae similitudo in genere etiam humano apparet. </p>
-
+        <section class="content-text lipsum parallax__layer parallax__layer--back" ng-bind-html="text[0].content | toTrustedHtml">
         </section>
         <section class="content-images parallax__layer parallax__layer--base">
+            <div class="spinner" ng-if="loading">
+              <div class="double-bounce1"></div>
+              <div class="double-bounce2"></div>
+            </div>
             <div class="content-video" ng-bind-html="data[0].content | toTrustedHtml" ng-if="data[0].format == 'video'"></div>
             <div class="img-wrapper" ng-repeat="photo in data"  ng-if="data[0].format == 'image'">
                 <img src="{{photo.featured_image.source}}" class="content-img" alt="{{photo.featured_image.title}}" ng-cloak/>

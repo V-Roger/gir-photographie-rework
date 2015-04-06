@@ -1,53 +1,63 @@
 'use strict';
 
 angular.module('girphoto')
-	.service('menuService', [function() {
+	.service('menuService', ['$filter', function($filter) {
 		var menuItems = {
 			'home': {
 				'label': 'ACCUEIL',
 				'state': 'home',
 				'filter': 'page',
-				'filter-param': 'home',
+				'filterParam': 'home',
+			},
+			'wandering': {
+				'label': 'WANDERING',
+				'state': 'wandering',
+				'filter': 'page',
+				'filterParam': 'wandering',
 				'children': {
-					'wandering': {
-						'label': 'WANDERING',
-						'state': 'wandering',
-						'filter': 'page',
-						'filter-param': 'wandering',
-						'children': {
-							'please-look-up': {
-								'label': 'PLEASE LOOK UP',
-								'state': 'wandering.lookup',
-								'filter': 'category_name',
-								'filter-param': 'PLEASE LOOK UP'
-							},
-							'smog': {
-								'label': 'SMOG',
-								'state': 'wandering.smog',
-								'filter': 'category_name',
-								'filter-param': 'SMOG'
-							}
-						}
+					'please-look-up': {
+						'label': 'PLEASE LOOK UP',
+						'state': 'wandering.lookup',
+						'filter': 'category_name',
+						'filterParam': 'PLEASE LOOK UP'
 					},
-					'moving': {
-						'label': 'MOVING',
-						'state': 'moving',
-						'filter': 'page',
-						'filter-param': 'moving',
-						'children': {
-							'eyes-like-crippled': {
-								'label': 'EYES LIKE CRIPPLED',
-								'state': 'moving.eyes-like-crippled',
-								'filter': 'category_name',
-								'filter-param': 'EYES LIKE CRIPPLED'
-							}
-						}
+					'smog': {
+						'label': 'SMOG',
+						'state': 'wandering.smog',
+						'filter': 'category_name',
+						'filterParam': 'SMOG'
+					}
+				}
+			},
+			'moving': {
+				'label': 'MOVING',
+				'state': 'moving',
+				'filter': 'page',
+				'filterParam': 'moving',
+				'children': {
+					'eyes-like-crippled': {
+						'label': 'EYES LIKE CRIPPLED',
+						'state': 'moving.eyes-like-crippled',
+						'filter': 'category_name',
+						'filterParam': 'EYES LIKE CRIPPLED'
 					}
 				}
 			}	
 		};
 
-		this.getMenuItems = function() {
-			return menuItems;
+		var currentItems = {};
+
+		this.getMenuItems = function(navItem) {
+			if(navItem) {
+				if(navItem.children) {
+					currentItems = navItem.children;
+					return navItem.children;
+				} else {
+					return currentItems;
+				}
+			} else {
+				currentItems = menuItems;
+				return menuItems;
+			}
 		};
 	}]);
