@@ -1,5 +1,5 @@
 <nav class="main-nav">
-	<span class="icon-angle-double-up nav-back-icon" ng-click="navBack()" ui-sref="{{lastState}}" ng-if="navVisible && lastItems"></span>
+	<span class="icon-angle-double-up nav-back-icon" ng-click="navBack()" ng-if="navVisible && lastItems"></span>
     <ul ng-if="navVisible">
         <li ng-repeat="item in menuItems" class="header-item" ng-click="navClickAction(item)" ui-sref="{{item.state}}" ui-sref-active="active"><a>{{item.label}}</a></li>
     </ul>

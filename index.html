@@ -3,6 +3,7 @@
 	<head>
     <title>GIR | rework</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/gir.css">
     <script src="bower_components/angular/angular.js"></script>
@@ -12,12 +13,14 @@
     <script src="js/main.js"></script>
     <script src="js/controllers/main-controller.js"></script>
     <script src="js/directives/menu-directive.js"></script>
+    <script src="js/directives/photo-directive.js"></script>
     <script src="js/services/menu-service.js"></script>
     <script src="js/services/rest-service.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 	</head>
     <body ng-controller="mainController">
     <header class="header">
-        <div class="header-item logo">
+        <div class="header-item logo" ui-sref="home">
             <span class="logo-flourish flourish-left"></span>    
             <div class="logo-img">
                 <img class="logo-img" alt="logo Virgil Roger Photographie" src="img/logo.png"/>
@@ -26,21 +29,16 @@
         </div>
         <menu></menu>
     </header>
-    <section class="content parallax">
-        <section class="content-text lipsum parallax__layer parallax__layer--back" ng-bind-html="text[0].content | toTrustedHtml">
+    <section class="content parallax" ui-view>
+        <section class="content-text  parallax__layer parallax__layer--back" ng-bind-html="text[0].content | toTrustedHtml" ng-if="text[0].content" ng-class="{'full-size': !data[0]}">
         </section>
-        <section class="content-images parallax__layer parallax__layer--base">
+        <section class="content-images parallax__layer parallax__layer--base" ng-if="data[0]">
             <div class="spinner" ng-if="loading">
               <div class="double-bounce1"></div>
               <div class="double-bounce2"></div>
             </div>
             <div class="content-video" ng-bind-html="data[0].content | toTrustedHtml" ng-if="data[0].format == 'video'"></div>
-            <div class="img-wrapper" ng-repeat="photo in data"  ng-if="data[0].format == 'image'">
-                <img src="{{photo.featured_image.source}}" class="content-img" alt="{{photo.featured_image.title}}" ng-cloak/>
-                <div class="img-description" ng-bind-html="photo.content">
-                </div>
-                <br/>
-            </div>
+            <photo class="img-wrapper" ng-repeat="photo in data" ng-if="data[0].format == 'image'" photo="photo"></photo>
         </section>
     </section>
   </body>

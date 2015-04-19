@@ -11,6 +11,7 @@ html, body {
 	padding: 0;
 	overflow: hidden;
 	color: #333;
+	font-family: 'Raleway', sans-serif;
 }
 
 @font-face {
@@ -60,6 +61,7 @@ input::-moz-focus-inner {
 	width: 80px;
 	height: 80px;
 	overflow: visible;
+	cursor: pointer;
 }
 
 .logo-img > img{
@@ -81,7 +83,7 @@ input::-moz-focus-inner {
 }
 
 .flourish-right {
-	left: 95px;
+	left: 92px;
 }
 
 .logo-flourish:before, .logo-flourish:after {
@@ -92,20 +94,22 @@ input::-moz-focus-inner {
 
 .logo-flourish.flourish-left:before {
 	content: "\e802";
-	top: -14px;
+	top: -12.5px;
 	left: 55px;
 	font-family: "gir";
 	font-size: 32px;
 	color: #333;
+	line-height: 1;
 }
 
 .logo-flourish.flourish-right:before {
 	content: "\e801";
-	top: -14px;
+	top: -12.5px;
 	left: -9px;
 	font-family: "gir";
 	font-size: 32px;
 	color: #333;
+	line-height: 1;
 }
 
 /* NAV */
@@ -123,6 +127,7 @@ input::-moz-focus-inner {
 	margin-right: 5em;
 	-webkit-transition: all 0.15s cubic-bezier(.33,.66,.66,1);
 	transition: all 0.15s cubic-bezier(.33,.66,.66,1);
+	z-index: 3;
 }
 
 .main-nav > ul > li.header-item {
@@ -241,6 +246,12 @@ li.header-item.active a::after {
 	cursor: pointer;
 	display: block;
 	height: 0;
+	margin-left: -1em;
+	z-index: 4;
+}
+
+.nav-back-icon:before {
+	font-size: 1.5em;
 }
 
 .main-nav > ul > li.header-item.ng-enter {
@@ -285,16 +296,16 @@ li.header-item.active a::after {
 	}
 
 	.flourish-right {
-		left: 70px;
+		left: 67px;
 	}
 
 	.logo-flourish.flourish-left:before {
-		top: -17px;
 		left: 22px;
+		top: -16px;
 	}
 
 	.logo-flourish.flourish-right:before {
-		top: -17px;
+		top: -16px;
 	}
 
 	.main-nav > ul {
@@ -323,7 +334,7 @@ li.header-item.active a::after {
 .content-text {
 	z-index: 1;
 	text-align: center;
-	padding: 5em 0;
+	padding: 0;
 }
 
 .content-text a {
@@ -340,20 +351,25 @@ li.header-item.active a::after {
 
 .content-images {
 	position: absolute;
-	margin-top: 20%;
 	height: 100%;
 	min-height: 100%;
 	width: 100%;
 	text-align: center;
 	background: #fff;
 	z-index: 2;
+}
+
+.content-text + .content-images {
+	margin-top: 20%;
 	padding-top: 100px;
 }
 
 .content-images > .img-wrapper {
+	display: block;
 	width: 100vw;
 	height: 100vh;
-	margin-top: 100px;
+	padding-top: 100px;
+	background: #fff;
 }
 
 .content-images > .img-wrapper > .content-img {
@@ -363,6 +379,7 @@ li.header-item.active a::after {
 	padding-bottom: 100px;
 	border-bottom: 2px solid #333;
 	background: #fff;
+	cursor: crosshair;
 }
 
 .content-images > .img-wrapper:first-of-type {
@@ -393,17 +410,39 @@ width: 100%;
 height: 100%;
 }
 
+/* PHOTO HIGHLIGHT */
+
+.img-wrapper.photo-highlight {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+}
+
+.img-wrapper.photo-highlight > .content-img {
+	padding: 0;
+}
+
+.img-wrapper.photo-highlight > .img-description {
+	display: none;
+}
+
+.content.photo-highlight {
+	z-index: 5;
+}
+
 /* PARALLAX */
 
 .parallax {
   perspective: 1px;
-  height: 100%;
+  height: 101%;
   width: 100%;
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
   perspective-origin-x: 100%;
 }
+
 .parallax__layer {
   position: absolute;
   top: 0;
@@ -412,13 +451,31 @@ height: 100%;
   left: 0;
   transform-origin-x: 100%;
 }
+
 .parallax__layer--base {
   transform: translateZ(0);
 }
+
+.parallax__layer--back + .parallax__layer--base {
+	top: 20%;
+}
+
 .parallax__layer--back {
   transform: translateZ(-5px) scale(6);
-  max-height: 100%;
-  /*top: -100%;*/
+  height: 60%;
+  overflow: auto;
+}
+
+.parallax__layer--back.full-size {
+	height: 20%;
+}
+
+@media screen and (max-width:1024px) {
+
+	.parallax__layer--back + .parallax__layer--base {
+		top: 50%;
+	}
+
 }
 
 /* SPINNER */
@@ -463,4 +520,156 @@ height: 100%;
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
+}
+
+/* MENU GRID */
+
+.grid {
+	position: relative;
+	margin: 0 auto;
+	padding: 1em 0 4em;
+	max-width: 1000px;
+	list-style: none;
+	text-align: center;
+}
+
+/* Common style */
+.grid figure {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	margin: 10px 1%;
+	min-width: 320px;
+	max-width: 480px;
+	max-height: 480px;
+	width: 48%;
+	background: #3085a3;
+	text-align: center;
+	cursor: pointer;
+}
+
+.grid figure img {
+	position: relative;
+	display: block;
+	min-height: 100%;
+	max-width: 100%;
+	opacity: 0.8;
+}
+
+.grid figure figcaption {
+	padding: 2em;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+	pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Anchor will cover the whole item by default */
+/* For some effects it will show as a button */
+.grid figure figcaption > a {
+	z-index: 1000;
+	text-indent: 200%;
+	white-space: nowrap;
+	font-size: 0;
+	opacity: 0;
+}
+
+.grid figure h2 {
+	font-weight: 300;
+	font-family: neutra;
+}
+
+.grid figure h2 span {
+	font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+	margin: 0;
+}
+
+.grid figure p {
+	letter-spacing: 1px;
+	font-size: 68.5%;
+}
+
+figure.effect-sarah {
+	background: #aaa;
+}
+
+figure.effect-sarah img {
+	max-width: none;
+	width: -webkit-calc(100% + 20px);
+	width: calc(100% + 20px);
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(-10px,0,0);
+	transform: translate3d(-10px,0,0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+figure.effect-sarah:hover img {
+	opacity: 0.4;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+figure.effect-sarah figcaption {
+	text-align: left;
+}
+
+figure.effect-sarah h2 {
+	position: relative;
+	overflow: hidden;
+	padding: 0.5em 0;
+}
+
+figure.effect-sarah h2::after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background: #fff;
+	content: '';
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(-100%,0,0);
+	transform: translate3d(-100%,0,0);
+}
+
+figure.effect-sarah:hover h2::after {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+figure.effect-sarah p {
+	padding: 1em 0;
+	opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(100%,0,0);
+	transform: translate3d(100%,0,0);
+}
+
+figure.effect-sarah:hover p {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
 }

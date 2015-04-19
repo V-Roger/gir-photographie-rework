@@ -9,46 +9,55 @@ angular.module('girphoto')
 				'filter': 'page',
 				'filterParam': 'home',
 			},
-			'wandering': {
-				'label': 'WANDERING',
-				'state': 'wandering',
+			'errances': {
+				'label': 'ERRANCES',
+				'state': 'errances',
 				'filter': 'page',
-				'filterParam': 'wandering',
+				'filterParam': 'errances',
 				'children': {
 					'please-look-up': {
 						'label': 'PLEASE LOOK UP',
-						'state': 'wandering.lookup',
+						'state': 'errances.lookup',
 						'filter': 'category_name',
 						'filterParam': 'PLEASE LOOK UP'
 					},
 					'smog': {
 						'label': 'SMOG',
-						'state': 'wandering.smog',
+						'state': 'errances.smog',
 						'filter': 'category_name',
 						'filterParam': 'SMOG'
 					}
 				}
 			},
-			'moving': {
-				'label': 'MOVING',
-				'state': 'moving',
+			'mouvement': {
+				'label': 'MOUVEMENT',
+				'state': 'mouvement',
 				'filter': 'page',
-				'filterParam': 'moving',
+				'filterParam': 'mouvement',
 				'children': {
 					'eyes-like-crippled': {
 						'label': 'EYES LIKE CRIPPLED',
-						'state': 'moving.eyes-like-crippled',
+						'state': 'mouvement.eyes-like-crippled',
 						'filter': 'category_name',
 						'filterParam': 'EYES LIKE CRIPPLED'
 					}
 				}
-			}	
+			},
+			'sonLumiere': {
+				'label': 'SON & LUMI\u00C8RE',
+				'state': 'sonLumiere',
+				'filter': 'page',
+				'filterParam': 'sonLumiere',
+				'children': {
+
+				}
+			}
 		};
 
 		var currentItems = {};
 
 		this.getMenuItems = function(navItem) {
-			if(navItem) {
+			if(navItem && navItem.state !== 'home') {
 				if(navItem.children) {
 					currentItems = navItem.children;
 					return navItem.children;

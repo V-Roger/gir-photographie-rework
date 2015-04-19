@@ -13,7 +13,6 @@ angular.module('girphoto')
 						$scope.lastItems = $scope.menuItems;
 					}
 					$scope.lastState = $state.current.name;
-					console.log($scope.lastState);
 					$scope.menuItems = menuService.getMenuItems(navItem);
 				};
 

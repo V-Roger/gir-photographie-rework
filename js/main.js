@@ -2,7 +2,7 @@
 
 angular.module('girphoto', ['ngSanitize', 'ui.router', 'ngAnimate'])
 	.config(function($stateProvider, $urlRouterProvider){
-		$urlRouterProvider.otherwise('home');
+		$urlRouterProvider.otherwise('');
 
 		$stateProvider
 			.state('home', {
@@ -12,39 +12,43 @@ angular.module('girphoto', ['ngSanitize', 'ui.router', 'ngAnimate'])
 					'filterParam': 'home',
 				}
 			})
-			.state('wandering', {
-				url: '/wandering',
+			.state('errances', {
+				url: '/errances',
+				templateUrl: 'js/partials/category.html',
 				data: {
 					'filter': 'page',
-					'filterParam': 'wandering',
+					'filterParam': 'errances',
 				}
 			})
-			.state('wandering.lookup', {
+			.state('errances.lookup', {
 				url: '/please-look-up', 
+				templateUrl: 'js/partials/gallery.html',
 				data: {
 					'filter': 'category_name',
-					'filterParam': 'PLEASE LOOK UP'
+					'filterParam': 'ERRANCES/PLEASE LOOK UP'
 				}
 			})
-			.state('wandering.smog', {
+			.state('errances.smog', {
 				url: '/smog',
+				templateUrl: 'js/partials/gallery.html',
 				data: {
 					'filter': 'category_name',
-					'filterParam': 'SMOG'
+					'filterParam': 'ERRANCES/SMOG'
 				}
 			})
-			.state('moving', {
-				url: '/moving',
+			.state('mouvement', {
+				url: '/mouvement',
 				data: {
 					'filter': 'page',
-					'filterParam': 'moving',
+					'filterParam': 'mouvement',
 				}
 			})
-			.state('moving.eyes-like-crippled', {
+			.state('mouvement.eyes-like-crippled', {
 				url: '/eyes-like-crippled',
+				templateUrl: 'js/partials/gallery.html',
 				data: {
 					'filter': 'category_name',
-					'filterParam': 'EYES LIKE CRIPPLED'
+					'filterParam': 'MOUVEMENT/EYES LIKE CRIPPLED'
 				}
 			});
 	})

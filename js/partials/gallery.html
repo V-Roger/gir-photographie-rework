@@ -1,0 +1,6 @@
+<div class="spinner" ng-if="loading">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+<div class="content-video" ng-bind-html="data[0].content | toTrustedHtml" ng-if="data[0].format == 'video'"></div>
+<photo class="img-wrapper" ng-repeat="photo in data" ng-if="data[0].format == 'image'" photo="photo"></photo>
