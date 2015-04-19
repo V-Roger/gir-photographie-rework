@@ -16,14 +16,19 @@ angular.module('girphoto')
 			});
 		};
 
-		this.fetchChildren = function(filterParam) {
-			return $http.get(endPoint+'pages?filter[post_parent]='+filterParam+'&filter[order]=ASC').then(function(response) {
+		this.fetchChildren = function(categoryId) {
+			return $http.get(endPoint+'pages?filter[post_parent]='+categoryId+'&filter[order]=ASC').then(function(response) {
 				return response.data;
 			});
 		};
 
+		this.fetchGalleryDescription = function(galleryImageId) {
+			return $http.get(endPoint+'media/'+galleryImageId).then(function(response) {
+				return response.data.description;
+			});
+		};
+
 		this.fetch = function(filter, filterParam) {
-			console.log(filterParam);
 			var promises = [];
 			promises.push(root.fetchImages(filter, filterParam));
 			promises.push(root.fetchText(filterParam));

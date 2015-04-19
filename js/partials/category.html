@@ -6,37 +6,6 @@
       <div class="double-bounce2"></div>
     </div>
     <div class="grid">
-        <figure class="effect-sarah">
-            <img src="img/1.jpg" alt="img13"/>
-            <figcaption>
-                <h2>PLEASE <span>LOOK UP</span></h2>
-                <p>35 &amp; 135</p>
-                <a href="#">View more</a>
-            </figcaption>           
-        </figure>
-        <figure class="effect-sarah">
-            <img src="img/2.jpg" alt="img20"/>
-            <figcaption>
-                <h2><span>SMOG</span></h2>
-                <p>À couper au couteau</p>
-                <a href="#">View more</a>
-            </figcaption>           
-        </figure>
-        <figure class="effect-sarah">
-            <img src="img/3.jpg" alt="img13"/>
-            <figcaption>
-                <h2>À 50mm DU <span>SOUDAN</span></h2>
-                <p>focale fixe dans un monde en mouvement</p>
-                <a href="#">View more</a>
-            </figcaption>           
-        </figure>
-        <figure class="effect-sarah">
-            <img src="img/4.jpg" alt="img20"/>
-            <figcaption>
-                <h2><span>cul-de-sac</span></h2>
-                <p>La lumière au bout du tunnel</p>
-                <a href="#">View more</a>
-            </figcaption>           
-        </figure>
+        <category ng-repeat="gallery in galleries" picture="gallery.featured_image" description="gallery.description" ng-cloak>
     </div>
 </section>

@@ -26,6 +26,18 @@ angular.module('girphoto')
 						'state': 'errances.smog',
 						'filter': 'category_name',
 						'filterParam': 'SMOG'
+					},
+					'soudan': {
+						'label': '\u00C0 50mm DU SOUDAN',
+						'state': 'errances.soudan',
+						'filter': 'category_name',
+						'filterParam': 'SOUDAN'
+					},
+					'culDeSac': {
+						'label': 'CUL-DE-SAC',
+						'state': 'errances.culDeSac',
+						'filter': 'category_name',
+						'filterParam': 'CUL-DE-SAC'
 					}
 				}
 			},

@@ -18,6 +18,7 @@ angular.module('girphoto', ['ngSanitize', 'ui.router', 'ngAnimate'])
 				data: {
 					'filter': 'page',
 					'filterParam': 'errances',
+					'type': 'category'
 				}
 			})
 			.state('errances.lookup', {
@@ -38,9 +39,11 @@ angular.module('girphoto', ['ngSanitize', 'ui.router', 'ngAnimate'])
 			})
 			.state('mouvement', {
 				url: '/mouvement',
+				templateUrl: 'js/partials/category.html',
 				data: {
 					'filter': 'page',
 					'filterParam': 'mouvement',
+					'type': 'category'
 				}
 			})
 			.state('mouvement.eyes-like-crippled', {
