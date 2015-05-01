@@ -550,6 +550,15 @@ height: 100%;
 	cursor: pointer;
 }
 
+@media screen and (max-width:800px) {
+
+	.grid figure {
+		float: none;
+		margin: 10px auto;
+	}
+
+}
+
 .grid figure img {
 	position: relative;
 	display: block;
@@ -676,6 +685,7 @@ figure.effect-sarah:hover p {
 	transform: translate3d(0,0,0);
 }
 
+<<<<<<< HEAD
 /** FOOTER **/
 
 .footer {
@@ -735,4 +745,11 @@ figure.effect-sarah:hover p {
 
 .social a.vimeo-icon:hover svg {
 	stroke-width: 4;
+}
+
+/** KONAMI **/
+
+.konami {
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }

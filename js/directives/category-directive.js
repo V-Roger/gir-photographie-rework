@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('girphoto')
-	.directive('category', [function() {
+	.directive('category', [ 'menuService', '$state', function(menuService, $state) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -10,6 +10,10 @@ angular.module('girphoto')
 			},
 			templateUrl: 'js/partials/category-directive.html',
 			link: function($scope, element) {
+
+				$scope.goToStateByName = function(categoryTitle) {
+					$state.go(menuService.getItemStateByName(categoryTitle));
+				};
 			}
 		};
 	}]);

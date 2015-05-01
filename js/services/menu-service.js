@@ -3,7 +3,7 @@
 angular.module('girphoto')
 	.service('menuService', ['$filter', function($filter) {
 		var menuItems = {
-			'home': {
+			'accueil': {
 				'label': 'ACCUEIL',
 				'state': 'home',
 				'filter': 'page',
@@ -52,21 +52,66 @@ angular.module('girphoto')
 						'state': 'mouvement.eyes-like-crippled',
 						'filter': 'category_name',
 						'filterParam': 'EYES LIKE CRIPPLED'
+					},
+					'long-fight': {
+						'label': 'IT\'S A LONG FIGHT',
+						'state': 'mouvement.long-fight',
+						'filter': 'category_name',
+						'filterParam': 'LONG FIGHT'
 					}
 				}
 			},
-			'sonLumiere': {
-				'label': 'SON & LUMI\u00C8RE',
-				'state': 'sonLumiere',
+			'essais': {
+				'label': 'ESSAIS (PHOTO)GRAPHIQUES',
+				'state': 'essais',
 				'filter': 'page',
-				'filterParam': 'sonLumiere',
+				'filterParam': 'ESSAIS',
 				'children': {
-
+					'codex10': {
+						'label': 'CODEX \u250A10\u250A',
+						'state': 'essais.codex10',
+						'filter': 'category_name',
+						'filterParam': 'CODEX10'
+					},
+					'codex25': {
+						'label': 'CODEX \u250A25\u250A',
+						'state': 'essais.codex25',
+						'filter': 'category_name',
+						'filterParam': 'CODEX25'
+					}	
 				}
+			},
+			'immobile': {
+				'label': 'IMMOBILES',
+				'state': 'still',
+				'filter': 'page',
+				'filterParam': 'still',
+				'children': {
+					'geometry': {
+						'label': 'G\u00C9OM\u00C9TRIE',
+						'state': 'still.geometry',
+						'filter': 'category_name',
+						'filterParam': 'GÉOMÉTRIE'
+					},
+					'visages': {
+						'label': 'VISAGES',
+						'state': 'still.visages',
+						'filter': 'category_name',
+						'filterParam': 'VISAGES'
+					}
+				}			
 			}
 		};
 
 		var currentItems = {};
+
+		this.getItemStateByName = function(itemName) {
+			return($filter('itemStateByName')(menuItems, itemName)[0]);
+		};
+
+		this.getStateMenuItems = function(state) {
+			return $filter('itemByState')(menuItems, state);
+		};
 
 		this.getMenuItems = function(navItem) {
 			if(navItem && navItem.state !== 'home') {
@@ -80,5 +125,42 @@ angular.module('girphoto')
 				currentItems = menuItems;
 				return menuItems;
 			}
+		};
+	}])
+	.filter('itemStateByName', [function() {
+		return function(items, name) {
+			var filtered = [];
+			angular.forEach(items, function(item) {
+				if(item.children) {
+					angular.forEach(item.children, function(subItem) {
+						if(subItem.label == name || subItem.filterParam == name) {
+							filtered.push(subItem.state);
+						}
+					});
+				} else {
+					if(item.label == name || item.filterParam == name) {
+						filtered.push(item.state);
+					}
+				}
+			});
+			return filtered;
+		};
+	}])
+	.filter('itemByState', [function() {
+		return function(items, state) {
+			var filtered = [];
+			angular.forEach(items, function(item) {
+				if(item.children) {
+					angular.forEach(item.children, function(subItem) {
+						if(subItem.state == state) {
+							filtered.push(subItem);
+						}
+					});
+				}
+				if(item.state == state || state == 'home') {
+					filtered.push(item);
+				}
+			});
+			return filtered;
 		};
 	}]);
