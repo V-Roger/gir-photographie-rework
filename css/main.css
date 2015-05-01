@@ -435,7 +435,7 @@ height: 100%;
 
 .parallax {
   perspective: 1px;
-  height: 101%;
+  height: calc(101%	);
   width: 100%;
   position: absolute;
   overflow-x: hidden;
@@ -454,6 +454,8 @@ height: 100%;
 
 .parallax__layer--base {
   transform: translateZ(0);
+  padding-bottom: 80px;
+  height: calc(120% + 80px);
 }
 
 .parallax__layer--back + .parallax__layer--base {
@@ -672,4 +674,65 @@ figure.effect-sarah:hover p {
 	opacity: 1;
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+}
+
+/** FOOTER **/
+
+.footer {
+	width: 100%;
+	height: 80px;
+	margin-top: 80px;
+	clear: both;
+}
+
+.footer-title {
+	float: left;
+	padding: 1em 2em 0 2em;
+}
+
+.footer-title a {
+	font-family: neutra;
+	text-decoration: none;
+	border-bottom: 3px solid #b4e7f8;
+    box-shadow: inset 0 -5px 0 #b4e7f8;
+    color: #333;
+    transition: background .15s cubic-bezier(.33,.66,.66,1);
+}
+
+.footer-title a:hover {
+	background: #b4e7f8;
+}
+
+.social {
+	float: right;
+	padding-right: 1em;
+}
+
+.social a svg {
+	border: 2px solid #333;
+	margin-top: 1em;
+	margin-left: 1em;
+	padding: 0.5em;
+	height: 3em;
+	width: 3em;
+	-webkit-transition: all 0.15s cubic-bezier(.33,.66,.66,1);
+	transition: all 0.15s cubic-bezier(.33,.66,.66,1);
+	fill: #333;
+}
+
+.social a:hover svg {
+	padding: 0;
+	border: none;
+	stroke: #333;
+	stroke-width: 2;
+	fill: none;
+}
+
+.social a.flickr-icon:hover svg {
+	fill: #333;
+	stroke: none;
+}
+
+.social a.vimeo-icon:hover svg {
+	stroke-width: 4;
 }

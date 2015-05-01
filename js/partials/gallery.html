@@ -4,3 +4,4 @@
 </div>
 <div class="content-video" ng-bind-html="data[0].content | toTrustedHtml" ng-if="data[0].format == 'video'"></div>
 <photo class="img-wrapper" ng-repeat="photo in data" ng-if="data[0].format == 'image'" photo="photo"></photo>
+<footer class="footer" gir-footer></footer>
