@@ -1,5 +1,7 @@
 <figure class="effect-sarah">
-    <img src="{{picture.source}}" alt="{{title}}"/>
-    <figcaption ng-bind-html="description | toTrustedHtml" ng-cloak>
+    <img src="{{picture.source}}" alt="{{picture.title}}"/>
+    <figcaption>
+    	<div ng-bind-html="description | toTrustedHtml" ng-cloak></div>
+    	<a ng-click="goToStateByName(picture.title)"></a>
     </figcaption>           
 </figure>

@@ -548,6 +548,15 @@ height: 100%;
 	cursor: pointer;
 }
 
+@media screen and (max-width:800px) {
+
+	.grid figure {
+		float: none;
+		margin: 10px auto;
+	}
+
+}
+
 .grid figure img {
 	position: relative;
 	display: block;
@@ -672,4 +681,11 @@ figure.effect-sarah:hover p {
 	opacity: 1;
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+}
+
+/** KONAMI **/
+
+.konami {
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }

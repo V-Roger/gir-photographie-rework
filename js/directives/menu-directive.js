@@ -8,19 +8,20 @@ angular.module('girphoto')
 			link: function($scope) {
 				$scope.menuItems = menuService.getMenuItems();
 
-				$scope.navClickAction = function(navItem) {					
-					if(navItem.children) {
-						$scope.lastItems = $scope.menuItems;
+				$scope.parentState = null;
+
+				$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+					if(toState.data.type === 'redirect') {
+						window.location.href = toState.data.url;
 					}
-					$scope.lastState = $state.current.name;
-					$scope.menuItems = menuService.getMenuItems(navItem);
-				};
+					var stateName = toState.name.indexOf('.') !== -1 ? toState.name.split('.')[0] : toState.name;
+					var menuItems = menuService.getStateMenuItems(stateName);
+					$scope.menuItems = menuItems[0].children ? menuItems[0].children : menuItems;
+					if(toState.name !== 'home') $scope.parentState = 'home';
+				});
 
 				$scope.navBack = function() {
-					$scope.menuItems = $scope.lastItems;
-					if($scope.menuItems.home) {
-						$scope.lastItems = null;
-					}
+					$state.go($scope.parentState);
 				};
 			}
 		};

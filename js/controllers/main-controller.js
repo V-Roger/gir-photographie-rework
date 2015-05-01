@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('girphoto')
-	.controller('mainController', ['$scope', '$http', 'restService', function($scope, $http, restService) {
+	.controller('mainController', ['$scope', '$http', 'restService', '$state', function($scope, $http, restService, $state) {
 
 		$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 			$scope.loading = true;
@@ -19,6 +19,8 @@ angular.module('girphoto')
 						console.log($scope.galleries);
 						$scope.loading = false;
 					});
+				} else {
+					$scope.loading = false;	
 				}
 			});
 		});
@@ -27,6 +29,11 @@ angular.module('girphoto')
 
 		$scope.toggleNav = function() {
 			$scope.navVisible = !$scope.navVisible;
+		};
+
+		$scope.categoryLink = function(stateName) {
+			console.log('foo');
+			$state.go(stateName);
 		};
 
 	}])
